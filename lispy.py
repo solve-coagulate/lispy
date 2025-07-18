@@ -16,6 +16,17 @@ Symbol = str
 ListType = list
 Number = (int, float)
 
+
+def _print_lisp(*args: Any) -> None:
+    """Primitive print function for Lispy."""
+    def _to_string(exp: Any) -> str:
+        if isinstance(exp, list):
+            return '(' + ' '.join(map(_to_string, exp)) + ')'
+        return str(exp)
+
+    print(' '.join(_to_string(a) for a in args))
+
+
 class Env(dict):
     """Environment mapping symbols to values."""
 
@@ -66,6 +77,7 @@ def standard_env() -> Env:
         'null?': lambda x: x == [],
         'symbol?': lambda x: isinstance(x, str),
         'progn': lambda *x: x[-1] if x else None,
+        'print': _print_lisp,
         'nil': None,
     })
     env.update(vars(math))  # sin, cos, sqrt, pi, ...
