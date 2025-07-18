@@ -152,6 +152,10 @@ def eval_lisp(x: Any, env: Env = global_env) -> Any:
             (_, var, exp) = x
             env[var] = eval_lisp(exp, env)
             return None
+        elif op_sym == 'set!':         # (set! var exp)
+            (_, var, exp) = x
+            env.find(var)[var] = eval_lisp(exp, env)
+            return None
         elif op_sym == 'lambda':       # (lambda (var...) body)
             (_, params, body) = x
             return Procedure(params, body, env)
