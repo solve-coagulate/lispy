@@ -165,6 +165,13 @@ def eval_lisp(x: Any, env: Env = global_env) -> Any:
         elif op_sym == 'macroexpand':  # (macroexpand exp)
             (_, exp) = x
             return macroexpand(exp, env)
+        elif op_sym == 'try':          # (try exp) -> True if error
+            (_, exp) = x
+            try:
+                eval_lisp(exp, env)
+                return False
+            except Exception:
+                return True
         else:                          # (proc arg...)
             proc = eval_lisp(op_sym, env)
             if isinstance(proc, Procedure) and proc.is_macro:
