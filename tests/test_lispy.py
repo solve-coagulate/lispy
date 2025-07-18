@@ -18,20 +18,8 @@ def test_run_file():
 
 
 def test_lisp_test_suite():
-    source = """
-(define failures 0)
-
-(define assert-eq
-  (lambda (name actual expected)
-    (if (= actual expected)
-        (progn (print (quote PASS) name) nil)
-        (progn (print (quote FAIL) name (quote expected) expected (quote got) actual)
-               (define failures (+ failures 1))
-               nil))))
-
-(assert-eq (quote addition) (+ 1 1) 2)
-(assert-eq (quote car) (car (list 1 2 3)) 1)
-(if (= failures 0) 0 1)
-"""
-    out = run_lispy(source)
+    script = Path(__file__).with_name('lisp_tests.lisp')
+    exe = Path(__file__).resolve().parents[1] / 'lispy.py'
+    output = subprocess.check_output([sys.executable, str(exe), str(script)])
+    out = output.decode().strip()
     assert out.splitlines()[-1] == '0'
