@@ -57,3 +57,5 @@ lispy> (+ 1 2)
 
 This project is still in its early stages. Future commits will expand the standard library, add more tests, and improve the documentation.
 
+For ideas on additional tests, see [tests/OUTSTANDING_TESTS.md](tests/OUTSTANDING_TESTS.md).
+
