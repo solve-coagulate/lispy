@@ -37,7 +37,6 @@
              (= (progn (define foo 5) foo) 5)
              verbose)
     (run-test (quote symbol?) (symbol? (quote foo)) verbose)
-    (run-test (quote sqrt) (= (sqrt 9) 3) verbose)
     (run-test (quote closure)
              (= (((lambda (x) (lambda () x)) 7)) 7)
              verbose)

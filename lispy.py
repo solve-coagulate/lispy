@@ -6,10 +6,8 @@ needed for a Turing complete Lisp.  It is inspired by Peter Norvig's
 "lispy" interpreter but trimmed down for clarity.
 """
 
-import math
 import operator as op
 import sys
-from collections import ChainMap
 from typing import Any, Iterable, List
 
 Symbol = str
@@ -80,7 +78,6 @@ def standard_env() -> Env:
         'print': _print_lisp,
         'nil': None,
     })
-    env.update(vars(math))  # sin, cos, sqrt, pi, ...
     return env
 
 
