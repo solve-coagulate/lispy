@@ -8,8 +8,9 @@ needed for a Turing complete Lisp.  It is inspired by Peter Norvig's
 
 import math
 import operator as op
+import sys
 from collections import ChainMap
-from typing import Any, Callable, Iterable, List
+from typing import Any, Iterable, List
 
 Symbol = str
 ListType = list
@@ -77,6 +78,15 @@ global_env = standard_env()
 def parse(program: str) -> Any:
     """Read a Lisp expression from a string."""
     return read_from_tokens(tokenize(program))
+
+
+def parse_multiple(program: str) -> List[Any]:
+    """Parse multiple expressions from a string."""
+    tokens = tokenize(program)
+    exps = []
+    while tokens:
+        exps.append(read_from_tokens(tokens))
+    return exps
 
 
 def tokenize(s: str) -> List[str]:
@@ -181,6 +191,17 @@ def repl(prompt: str = 'lispy> ') -> None:
             print('Error:', e)
 
 
+def run_file(path: str, env: Env = global_env) -> None:
+    """Execute a file containing Lispy expressions."""
+    with open(path) as f:
+        program = f.read()
+    result = None
+    for exp in parse_multiple(program):
+        result = eval_lisp(exp, env)
+    if result is not None:
+        print(to_string(result))
+
+
 def to_string(exp: Any) -> str:
     """Convert a Python object back into a Lisp-readable string."""
     if isinstance(exp, ListType):
@@ -190,4 +211,8 @@ def to_string(exp: Any) -> str:
 
 
 if __name__ == '__main__':
-    repl()
+    if len(sys.argv) > 1:
+        for fname in sys.argv[1:]:
+            run_file(fname)
+    else:
+        repl()

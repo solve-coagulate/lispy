@@ -28,6 +28,7 @@ features are implemented, they can be ticked off here to track progress.
 - [x] Conditionals (`if`) and sequential execution (`progn`).
 - [x] Basic arithmetic primitives.
 - [x] Limited macro facility to support bootstrapping.
+- [x] Ability to execute Lispy code from a file.
 - [ ] A small standard library written in Lispy itself once the core is
   operational.
 
@@ -37,6 +38,12 @@ Run the interpreter directly with Python:
 
 ```bash
 python3 lispy.py
+```
+
+You can also run a Lispy source file by passing it as an argument:
+
+```bash
+python3 lispy.py path/to/program.lisp
 ```
 
 You'll be dropped into a REPL prompt where you can enter Lisp forms:
