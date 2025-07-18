@@ -20,12 +20,16 @@ The kernel is expected to contain just the essentials required for a Lisp interp
 
 ## Initial Feature Set
 
-- Numbers, symbols, lists, and basic cons operations (`cons`, `car`, `cdr`).
-- Definition and invocation of simple functions (`lambda`, `defun`).
-- Conditionals (`if`) and sequential execution (`progn`).
-- Basic arithmetic primitives.
-- Limited macro facility to support bootstrapping.
-- A small standard library written in Lispy itself once the core is operational.
+Below is a checklist of the minimal functionality Lispy aims to provide. As
+features are implemented, they can be ticked off here to track progress.
+
+- [ ] Numbers, symbols, lists, and basic cons operations (`cons`, `car`, `cdr`).
+- [ ] Definition and invocation of simple functions (`lambda`, `defun`).
+- [ ] Conditionals (`if`) and sequential execution (`progn`).
+- [ ] Basic arithmetic primitives.
+- [ ] Limited macro facility to support bootstrapping.
+- [ ] A small standard library written in Lispy itself once the core is
+  operational.
 
 ## Future Work
 
