@@ -15,3 +15,23 @@ def run_lispy(source: str) -> str:
 def test_run_file():
     out = run_lispy('(define x 41)\n(+ x 1)')
     assert out == '42'
+
+
+def test_lisp_test_suite():
+    source = """
+(define failures 0)
+
+(define assert-eq
+  (lambda (name actual expected)
+    (if (= actual expected)
+        (progn (print (quote PASS) name) nil)
+        (progn (print (quote FAIL) name (quote expected) expected (quote got) actual)
+               (define failures (+ failures 1))
+               nil))))
+
+(assert-eq (quote addition) (+ 1 1) 2)
+(assert-eq (quote car) (car (list 1 2 3)) 1)
+(if (= failures 0) 0 1)
+"""
+    out = run_lispy(source)
+    assert out.splitlines()[-1] == '0'
