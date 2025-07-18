@@ -23,15 +23,30 @@ The kernel is expected to contain just the essentials required for a Lisp interp
 Below is a checklist of the minimal functionality Lispy aims to provide. As
 features are implemented, they can be ticked off here to track progress.
 
-- [ ] Numbers, symbols, lists, and basic cons operations (`cons`, `car`, `cdr`).
-- [ ] Definition and invocation of simple functions (`lambda`, `defun`).
-- [ ] Conditionals (`if`) and sequential execution (`progn`).
-- [ ] Basic arithmetic primitives.
-- [ ] Limited macro facility to support bootstrapping.
+- [x] Numbers, symbols, lists, and basic cons operations (`cons`, `car`, `cdr`).
+- [x] Definition and invocation of simple functions (`lambda`, `defun`).
+- [x] Conditionals (`if`) and sequential execution (`progn`).
+- [x] Basic arithmetic primitives.
+- [x] Limited macro facility to support bootstrapping.
 - [ ] A small standard library written in Lispy itself once the core is
   operational.
 
+## Usage
+
+Run the interpreter directly with Python:
+
+```bash
+python3 lispy.py
+```
+
+You'll be dropped into a REPL prompt where you can enter Lisp forms:
+
+```lisp
+lispy> (+ 1 2)
+3
+```
+
 ## Future Work
 
-This repository currently contains only this documentation and the license. The actual implementation of Lispy is yet to be committed. Future commits will flesh out the interpreter, tests, and more comprehensive documentation.
+This project is still in its early stages. Future commits will expand the standard library, add more tests, and improve the documentation.
 
